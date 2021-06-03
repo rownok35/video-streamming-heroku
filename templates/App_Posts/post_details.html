@@ -11,7 +11,14 @@
 
 <div class="row">
     <div class="col-8">
-        {% video post.vid_url '700x500' %}
+        <!-- {% video post.vid_url '700x500' %} -->
+        {% video post.vid_url %}
+        <iframe width="{{ 700 }}" height="{{ 500 }}" src="{{ post.vid_url }}" frameborder="0" allowfullscreen></iframe> {% endvideo %}
+
+
+
+
+
     </div>
     <div class="col-4">
         <blockquote class="blockquote lead">
