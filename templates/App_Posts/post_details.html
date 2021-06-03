@@ -27,23 +27,23 @@
 </div>
 {% if not liked %}
 <a href="{% url 'App_Posts:liked' pk=post.pk %}">
-    <img src="/media/like.jpg" alt="pic not found" width="25px" height="25px">
+    <img src="/media/like.JPG" alt="pic not found" width="25px" height="25px">
 
 </a>
 {% else %}
 <a href="{% url 'App_Posts:liked' pk=post.pk %}">
 
-    <img src="/media/like_fill.jpg" width="25px" height="25px">
+    <img src="/media/like_fill.JPG" width="25px" height="25px">
 </a>
 {% endif %} {{ post.liked_post.count }} Likes &nbsp; &nbsp; {% if not disliked %}
 <a href="{% url 'App_Posts:unliked' pk=post.pk %}">
-    <img src="/media/dislike.jpg" width="25px" height="25px">
+    <img src="/media/dislike.JPG" width="25px" height="25px">
 
 </a>
 {% else %}
 <a href="{% url 'App_Posts:unliked' pk=post.pk %}">
 
-    <img src="/media/dislike_fill.jpg" width="25px" height="25px">
+    <img src="/media/dislike_fill.JPG" width="25px" height="25px">
 </a>
 {% endif %} {{ post.disliked_post.count }} Dislikes
 
