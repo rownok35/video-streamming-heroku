@@ -1,1 +1,1 @@
-web: gunicorn video_streaming.wsgi
+web: waitress-serve --port=$PORT video_streaming.wsgi:application

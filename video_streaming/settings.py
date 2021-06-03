@@ -1,5 +1,6 @@
 
 
+import os
 from pathlib import Path
 
 
@@ -14,12 +15,12 @@ MEDIA_DIR = BASE_DIR / 'media'
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'a*n*w_%o51n3$(dv#=$at1zy22!kx+l&o1fh!doypa$+1mj108'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['videostream35.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ["videostream27.herokuapp.com",  'localhost']
 
 
 # Application definition
@@ -41,6 +42,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -118,6 +120,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIR = [STATIC_DIR, ]
+STATIC_ROOT = BASE_DIR / 'static'
 
 
 MEDIA_ROOT = MEDIA_DIR
