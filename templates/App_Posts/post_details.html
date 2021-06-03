@@ -1,0 +1,71 @@
+{% extends 'navbar.html' %} {% load embed_video_tags %} {% load crispy_forms_tags %} {%block title_block %} {{title}} {%endblock%} {%block body_block %}
+<!-- <hr> -->
+<!-- <div class="container">
+    <p>{{post.author}}</p>
+    <p>{{post.vid_url}} </p>
+    <p>{{post.catagory}}</p>
+    <p>{{post.caption}}</p>
+    <p>{{post.upload_date}}</p>
+
+</div> -->
+
+<div class="row">
+    <div class="col-8">
+        {% video post.vid_url '700x500' %}
+    </div>
+    <div class="col-4">
+        <blockquote class="blockquote lead">
+
+            <p> <b>Posted By:</b> <a href="{% url 'App_Login:user' username=post.author %}"><span class="text-muted">@{{post.author}}</span></a> </p>
+            <p> <b>Category:</b> {{post.catagory}}</p>
+            <p> <b>Video Caption:</b> {{post.caption}}</p>
+            <p> <b>Upload Date:</b> {{post.upload_date}}</p>
+
+        </blockquote>
+    </div>
+
+</div>
+{% if not liked %}
+<a href="{% url 'App_Posts:liked' pk=post.pk %}">
+    <img src="/media/like.jpg" alt="pic not found" width="25px" height="25px">
+
+</a>
+{% else %}
+<a href="{% url 'App_Posts:liked' pk=post.pk %}">
+
+    <img src="/media/like_fill.jpg" width="25px" height="25px">
+</a>
+{% endif %} {{ post.liked_post.count }} Likes &nbsp; &nbsp; {% if not disliked %}
+<a href="{% url 'App_Posts:unliked' pk=post.pk %}">
+    <img src="/media/dislike.jpg" width="25px" height="25px">
+
+</a>
+{% else %}
+<a href="{% url 'App_Posts:unliked' pk=post.pk %}">
+
+    <img src="/media/dislike_fill.jpg" width="25px" height="25px">
+</a>
+{% endif %} {{ post.disliked_post.count }} Dislikes
+
+<hr>
+
+<div class="row">
+    <div class="col-sm-6">
+        <hr>
+        <h5>Comments:</h5>
+        {% for comment in post.vid_comment.all %}
+        <p><a href="{% url 'App_Login:user' username=user.username %}">@{{comment.user}}</a> {{comment.comment}}<br>
+            <h6>{{comment.comment_date}}</h6>
+        </p>
+        {% endfor %}
+    </div>
+    <div class="col-sm-6">
+        <form method="POST">
+            {{ comment_form|crispy }} {% csrf_token %}
+            <button type="submit" class="btn btn-primary btn-sm">Comment</button>
+        </form>
+    </div>
+
+</div>
+<br>
+<br> {% endblock %}
