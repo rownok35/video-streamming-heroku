@@ -13,7 +13,10 @@
     <div class="col-8">
         <!-- {% video post.vid_url '700x500' %} -->
 
-        {% video post.vid_url as my_video %} URL: {{ my_video.url }} Thumbnail: {{ my_video.thumbnail }} Backend: {{ my_video.backend }} {% video my_video "large" %} {% endvideo %}
+        <!-- {% video post.vid_url as my_video %}  {% video my_video "large" %} {% endvideo %} -->
+
+        <iframe width="700" height="500" src="{{post.vid_url}}">
+        </iframe>
 
 
 

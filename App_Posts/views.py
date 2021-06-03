@@ -68,6 +68,10 @@ def unliked(request, pk):
 @login_required
 def post_details(request, pk):
     post = Post.objects.get(pk=pk)
+    url = post.vid_url
+    url = url.replace("watch?v=", "embed/")
+    post.vid_url = url
+
     comment_form = CommentForm()
     already_liked = Like.objects.filter(post=post, user=request.user)
     already_disliked = Dislike.objects.filter(post=post, user=request.user)
